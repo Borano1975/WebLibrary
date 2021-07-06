@@ -1,0 +1,713 @@
+{
+	"info": {
+		"_postman_id": "5e8b3fb4-b13b-4826-a5cb-0da55d06ac92",
+		"name": "Library API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "create admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200 || pm.response.code === 201) {",
+									"    pm.environment.set('authToken', pm.response.json().token)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"admin\",\n    \"password\": \"pas\",\n    \"email\": \"adm@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "admin login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200 || pm.response.code === 201) {",
+									"    pm.environment.set('authToken', pm.response.json().token)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@library.com\", \n    \"password\": \"password123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout all sessions",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/logoutALL",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"logoutALL"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read admin profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit admin",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"admin\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete admin",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "books",
+			"item": [
+				{
+					"name": "create book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"NEWBOOK FROM HARUKI\",\n    \"ISBN\" : 1923128342283,\n    \"cover\" : \"\",\n    \"author_id\": \"60e426a78e1332ce8ec2cc43\",\n    \"category\": [\n        {\"name\": \"cat1\"},\n        {\"name\" : \"cat2\"}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/books",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload cover",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "cover",
+									"type": "file",
+									"src": "/Users/borano/Desktop/index.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/books/60e4945b3851e3dc50863a24/cover",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"books",
+								"60e4945b3851e3dc50863a24",
+								"cover"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete cover",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/books/60dad5fa9075cb5855d598e5/cover",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"books",
+								"60dad5fa9075cb5855d598e5",
+								"cover"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/books",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read book by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/books/60d69cf5f93c44295bd7812c",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"books",
+								"60d69cf5f93c44295bd7812c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update book by id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n     \"category\" : [\n        { \n            \"name\": \"love\"\n        },\n        {\n            \"name\": \"data\"\n        }\n        ]\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/books/60d799e8692ba631be605592",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"books",
+								"60d799e8692ba631be605592"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete book by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/books/60dad5fa9075cb5855d598e5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"books",
+								"60dad5fa9075cb5855d598e5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "author",
+			"item": [
+				{
+					"name": "create author",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"authn\",\n    \"bio\": \"auuthoorrbio\"\n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/author",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"author"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read authors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/author",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"author"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read author by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/author/60d69f4d4877e5298fc3df26",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"author",
+								"60d69f4d4877e5298fc3df26"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update author by id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Author\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/author/60d69f4d4877e5298fc3df26",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"author",
+								"60d69f4d4877e5298fc3df26"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete author by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/author/60d69f4d4877e5298fc3df26",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"author",
+								"60d69f4d4877e5298fc3df26"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "category",
+			"item": [
+				{
+					"name": "create category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Drama\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/category",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/category",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read category by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/category/60d69ce1f93c44295bd78129",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"category",
+								"60d69ce1f93c44295bd78129"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit category by id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"horror\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/category/60d69ce1f93c44295bd78129",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"category",
+								"60d69ce1f93c44295bd78129"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete category by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/category/60d69ce1f93c44295bd78129",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"category",
+								"60d69ce1f93c44295bd78129"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "bookcategory",
+			"item": [
+				{
+					"name": "read all bookcategories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/bookcategory/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bookcategory",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read bookcategory by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/bookcategory/60e3085b444a3fc25b44a858",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bookcategory",
+								"60e3085b444a3fc25b44a858"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create bookcategory",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"book_id\": \"60e2fdf6ad6e59c0a5ba207e\",\n    \"category_id\" : \"60e2ff33d33804c0e90433d6\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/bookcategory",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bookcategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete bookcategory",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/bookcategory/60e30811ed0924c25177287b",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bookcategory",
+								"60e30811ed0924c25177287b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{authToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
